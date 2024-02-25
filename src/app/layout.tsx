@@ -5,6 +5,8 @@ import './globals.css';
 import { ThemeProvider } from '@/context/theme-toggle';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 import StoreProvider from './StoreProvider';
+import Header from '@/components/Header';
+import SideNavbar from '@/components/SideNavbar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,6 +26,8 @@ export default function RootLayout({
         <UserProvider>
           <AppRouterCacheProvider>
             <ThemeProvider>
+              <Header />
+              <SideNavbar />
               <StoreProvider count={0}>{children}</StoreProvider>
             </ThemeProvider>
           </AppRouterCacheProvider>
