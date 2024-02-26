@@ -22,7 +22,7 @@ export default function RootLayout({
         <SessionProvider session={session}>
             <AppRouterCacheProvider>
               <ThemeProvider>
-                <Header />
+                {/*<Header />*/}
                 <SideNavbar />
                 <StoreProvider count={0}>{children}</StoreProvider>
               </ThemeProvider>

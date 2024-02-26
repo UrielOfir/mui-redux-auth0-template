@@ -47,7 +47,7 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const theme = React.useMemo(
     () =>
       createTheme(themeMode === 'dark' ? darkTheme : lightTheme, {
-        direction: rtl ? 'rtl' : 'ltr', // Ensure the theme direction is also updated
+        direction: 'rtl', // Ensure the theme direction is also updated
       }),
     [themeMode, rtl] // Added rtl to dependencies array
   );
