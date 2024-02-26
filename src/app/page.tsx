@@ -17,19 +17,18 @@ import { useThemeContext } from '@/context/theme-toggle';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { decrement, increment } from '@/lib/features/counterSlice';
+import AuthButton from '@/components/AuthButton';
 
 export default function Home() {
   const count = useAppSelector((state) => state.counter.value);
   const dispatch = useAppDispatch();
   const { toggleTheme , toggleRtl} = useThemeContext();
 
-  const { user, error, isLoading } = useUser();
+  // const { user, error, isLoading } = useUser();
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
-
-  console.log('user', user);
-
+  // if (isLoading) return <div>Loading...</div>;
+  // if (error) return <div>{error.message}</div>;
+ 
   return (
     <main className={styles.main}>
       <Container maxWidth="lg">
@@ -46,6 +45,8 @@ export default function Home() {
             Material UI - Next.js example in TypeScript
           </Typography>
           <Box sx={{ maxWidth: 'sm', display: 'flex', gap: '10px' }}>
+          <AuthButton/>
+
             <Button variant="contained" onClick={toggleTheme}>
               Toggle Theme
             </Button>
@@ -85,7 +86,7 @@ export default function Home() {
             </Box>
           </Box>
 
-          <Box sx={{ maxWidth: 'sm', display: 'flex', gap: '10px' }}>
+          {/* <Box sx={{ maxWidth: 'sm', display: 'flex', gap: '10px' }}>
             {user ? (
               <Card sx={{ maxWidth: 345 }}>
                 <CardHeader
@@ -114,7 +115,7 @@ export default function Home() {
                 You are not logged in
               </Typography>
             )}
-          </Box>
+          </Box> */}
         </Box>
       </Container>
     </main>

@@ -3,7 +3,7 @@ import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/materia
 
 function SideNavbar() {
   return (
-    <Drawer variant="permanent" anchor="right">
+    <Drawer  variant="permanent" anchor="right">
       <List>
         {['Home', 'About'].map((text) => (
           <ListItem button key={text}>
