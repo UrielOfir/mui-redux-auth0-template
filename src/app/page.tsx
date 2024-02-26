@@ -39,14 +39,7 @@ export default function Home() {
             Material UI - Next.js example in TypeScript
           </Typography>
           <Box sx={{ maxWidth: 'sm', display: 'flex', gap: '10px' }}>
-          <AuthButton/>
 
-            <Button variant="contained" onClick={toggleTheme}>
-              Toggle Theme
-            </Button>
-            <Button variant="contained" onClick={toggleRtl}>
-              Toggle RTL / LTR
-            </Button>
             <Button variant="contained" component={Link} noLinkStyle href="/about">
               Go to the about page
             </Button>
