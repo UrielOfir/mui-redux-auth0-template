@@ -8,6 +8,8 @@ type ThemeContextType = {
   toggleTheme: () => void;
   currentTheme: 'light' | 'dark';
   toggleRtl: () => void;
+  toggleDrawerOpen: (v?: boolean) => void;
+  drawerOpen: boolean;
 };
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -29,7 +31,8 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
 
   // Initialize themeMode based on prefersDarkMode
   const [themeMode, setTheme] = useState<'light' | 'dark'>(prefersDarkMode ? 'dark' : 'light');
-  const [rtl, setRtl] = useState(false);
+  const [rtl, setRtl] = useState(true);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
@@ -42,18 +45,28 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     });
   };
 
+  const toggleDrawerOpen = (v?: boolean) => {
+    if (v === undefined) {
+      setDrawerOpen((prevDrawerOpen) => !prevDrawerOpen);
+      return;
+    }
+    setDrawerOpen(v);
+  };
+
   // Removed useEffect as initial state now directly uses prefersDarkMode
 
   const theme = React.useMemo(
     () =>
       createTheme(themeMode === 'dark' ? darkTheme : lightTheme, {
-        direction: rtl ? 'rtl' : 'ltr', // Ensure the theme direction is also updated
+        direction: rtl ? 'ltr' : 'rtl', // Ensure the theme direction is also updated
       }),
     [themeMode, rtl] // Added rtl to dependencies array
   );
 
   return (
-    <ThemeContext.Provider value={{ toggleTheme, toggleRtl, currentTheme: themeMode }}>
+    <ThemeContext.Provider
+      value={{ toggleTheme, toggleRtl, currentTheme: themeMode, toggleDrawerOpen, drawerOpen }}
+    >
       <MUIThemeProvider theme={theme}>
         <CssBaseline />
         {children}
