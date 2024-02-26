@@ -1,20 +1,14 @@
 'use client';
 import styles from './page.module.css';
 import {
-  Avatar,
   Box,
   Button,
-  Card,
-  CardContent,
-  CardHeader,
-  CardMedia,
   Container,
   Typography,
 } from '@mui/material';
 import { red } from '@mui/material/colors';
 import Link from '@/components/Link';
 import { useThemeContext } from '@/context/theme-toggle';
-import { useUser } from '@auth0/nextjs-auth0/client';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { decrement, increment } from '@/lib/features/counterSlice';
 import AuthButton from '@/components/AuthButton';
@@ -53,12 +47,6 @@ export default function Home() {
             <Button variant="contained" onClick={toggleRtl}>
               Toggle RTL / LTR
             </Button>
-            <Button variant="contained" component={Link} noLinkStyle href="/api/auth/login">
-              Login
-            </Button>
-            <Button variant="contained" component={Link} noLinkStyle href="/api/auth/logout">
-              Logout
-            </Button>
             <Button variant="contained" component={Link} noLinkStyle href="/about">
               Go to the about page
             </Button>
@@ -86,36 +74,6 @@ export default function Home() {
             </Box>
           </Box>
 
-          {/* <Box sx={{ maxWidth: 'sm', display: 'flex', gap: '10px' }}>
-            {user ? (
-              <Card sx={{ maxWidth: 345 }}>
-                <CardHeader
-                  avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                      {user?.name ? user?.name?.[0] + user?.name?.[1] : '??'}
-                    </Avatar>
-                  }
-                  title={user.nickname || user.name || '??'}
-                  subheader={user.sub || '??'}
-                />
-                <CardMedia
-                  component="img"
-                  height="194"
-                  image={user.picture || ''}
-                  alt={user.name || user.nickname || '??'}
-                />
-                <CardContent>
-                  <Typography variant="body2" color="text.secondary">
-                    {user.email}
-                  </Typography>
-                </CardContent>
-              </Card>
-            ) : (
-              <Typography variant="h6" component="h2" sx={{ mb: 2 }}>
-                You are not logged in
-              </Typography>
-            )}
-          </Box> */}
         </Box>
       </Container>
     </main>

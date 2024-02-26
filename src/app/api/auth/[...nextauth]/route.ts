@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import AzureADProvider from "next-auth/providers/azure-ad";
 
-const authOptions = {
+export const authOptions = {
   // Configure one or more authentication providers
   providers: [
     AzureADProvider({

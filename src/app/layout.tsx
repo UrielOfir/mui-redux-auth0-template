@@ -3,7 +3,6 @@
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import "./globals.css";
 import { ThemeProvider } from "@/context/theme-toggle";
-import { UserProvider } from "@auth0/nextjs-auth0/client";
 import StoreProvider from "./StoreProvider";
 import Header from "@/components/Header";
 import SideNavbar from "@/components/SideNavbar";
@@ -21,7 +20,6 @@ export default function RootLayout({
     <html lang="he">
       <body>
         <SessionProvider session={session}>
-          {/* <UserProvider> */}
             <AppRouterCacheProvider>
               <ThemeProvider>
                 <Header />
@@ -29,7 +27,6 @@ export default function RootLayout({
                 <StoreProvider count={0}>{children}</StoreProvider>
               </ThemeProvider>
             </AppRouterCacheProvider>
-          {/* </UserProvider> */}
         </SessionProvider>
       </body>
     </html>
