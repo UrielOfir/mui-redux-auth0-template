@@ -6,22 +6,13 @@ import {
   Container,
   Typography,
 } from '@mui/material';
-import { red } from '@mui/material/colors';
 import Link from '@/components/Link';
-import { useThemeContext } from '@/context/theme-toggle';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { decrement, increment } from '@/lib/features/counterSlice';
-import AuthButton from '@/components/AuthButton';
 
 export default function Home() {
   const count = useAppSelector((state) => state.counter.value);
   const dispatch = useAppDispatch();
-  const { toggleTheme , toggleRtl} = useThemeContext();
-
-  // const { user, error, isLoading } = useUser();
-
-  // if (isLoading) return <div>Loading...</div>;
-  // if (error) return <div>{error.message}</div>;
  
   return (
     <main className={styles.main}>
