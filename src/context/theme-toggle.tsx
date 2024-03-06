@@ -7,7 +7,6 @@ import { CssBaseline, createTheme, useMediaQuery } from '@mui/material';
 type ThemeContextType = {
   toggleTheme: () => void;
   currentTheme: 'light' | 'dark';
-  toggleRtl: () => void;
 };
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -27,33 +26,43 @@ type ThemeProviderProps = {
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
-  // Initialize themeMode based on prefersDarkMode
   const [themeMode, setTheme] = useState<'light' | 'dark'>(prefersDarkMode ? 'dark' : 'light');
-  const [rtl, setRtl] = useState(false);
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
   };
 
-  const toggleRtl = () => {
-    setRtl((prevRtl) => {
-      document.documentElement.dir = prevRtl ? 'ltr' : 'rtl';
-      return !prevRtl;
-    });
-  };
 
-  // Removed useEffect as initial state now directly uses prefersDarkMode
 
   const theme = React.useMemo(
     () =>
       createTheme(themeMode === 'dark' ? darkTheme : lightTheme, {
-        direction: rtl ? 'rtl' : 'ltr', // Ensure the theme direction is also updated
+        direction:  'rtl',
+        components: {
+          MuiTableCell: {
+            styleOverrides: {
+              root: {
+                textAlign: 'right',
+              },
+              head: { 
+                // @ts-ignore
+                backgroundColor: themeMode === 'dark' ? darkTheme?.palette?.primary?.main : lightTheme?.palette?.primary?.main,
+                fontWeight: 'bold',
+              fontSize: '1.1rem',},
+            },
+          },
+        },
+        typography: {
+          fontFamily: [
+            'Arial',
+          ].join(','),
+        },
       }),
-    [themeMode, rtl] // Added rtl to dependencies array
+    [themeMode]
   );
 
   return (
-    <ThemeContext.Provider value={{ toggleTheme, toggleRtl, currentTheme: themeMode }}>
+    <ThemeContext.Provider value={{ toggleTheme , currentTheme: themeMode }}>
       <MUIThemeProvider theme={theme}>
         <CssBaseline />
         {children}
