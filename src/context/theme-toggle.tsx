@@ -33,7 +33,8 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   };
 
 
-
+//TODO: Create a new object for the theme
+//      The toggle should only change the theme from light to dark and vice versa
   const theme = React.useMemo(
     () =>
       createTheme(themeMode === 'dark' ? darkTheme : lightTheme, {
