@@ -9,7 +9,7 @@ const roboto = Roboto({
   display: 'swap',
 });
 
-export const darkTheme: ThemeOptions = {
+export const lightTheme: ThemeOptions = {
   typography: {
     fontFamily: roboto.style.fontFamily,
   },
@@ -24,7 +24,7 @@ export const darkTheme: ThemeOptions = {
   },
 };
 
-export const lightTheme: ThemeOptions = {
+export const darkTheme: ThemeOptions = {
   typography: {
     fontFamily: roboto.style.fontFamily,
   },
