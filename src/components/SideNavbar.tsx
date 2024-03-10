@@ -41,21 +41,8 @@ function SideNavbar() {
     </DrawerHeader>
     <Divider />
     <List>
-      {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-        <ListItem key={text} disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItemButton>
-        </ListItem>
-      ))}
-    </List>
-    <Divider />
-    <List>
-      {['All mail', 'Trash', 'Spam'].map((text, index) => (
-        <ListItem key={text} disablePadding>
+      {['הגשת בקשה', 'פתיחת תיק', 'תשלום שובר', 'בדיקת קיומו של חוב מזונות', 'עדכון משפחת עו"ד'].map((text, index) => (
+        <ListItem key={text} disablePadding >
           <ListItemButton>
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}

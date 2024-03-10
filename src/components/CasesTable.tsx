@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Case } from "../../types";
+import Link from "./Link";
 
 interface CasesTableProps {
   cases?: Case[];
@@ -40,7 +41,9 @@ export const CasesTable: React.FC<CasesTableProps> = ({ cases }) => {
           {cases?.map((caseItem, index) => (
             <TableRow key={index}>
               <TableCell>{caseItem.statusName}</TableCell>
-              <TableCell>{caseItem.cseId}</TableCell>
+              <TableCell>
+                <Link href={`/case/${caseItem.cseId}`}>
+                {caseItem.cseId}</Link></TableCell>
               <TableCell>{caseItem.balance}</TableCell>
               <TableCell>{caseItem.caseType}</TableCell>
               <TableCell>{caseItem.debtorName}</TableCell>
